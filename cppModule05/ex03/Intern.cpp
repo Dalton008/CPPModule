@@ -42,8 +42,8 @@ Form* Intern::makeForm(std::string request, std::string target)
 	Form* (Intern::*array[3])(std::string target) = 
 	{
 		array[0] = &Intern::createPresidentialPardonForm,
-		array[1] = &Intern::createShrubberyCreationForm,
-		array[2] = &Intern::createRobotomyRequestForm
+		array[1] = &Intern::createRobotomyRequestForm,
+		array[2] = &Intern::createShrubberyCreationForm
 	};
 	int i;
 
