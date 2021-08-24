@@ -6,7 +6,7 @@
 /*   By: mjammie <mjammie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 12:28:44 by mjammie           #+#    #+#             */
-/*   Updated: 2021/08/21 13:38:18 by mjammie          ###   ########.fr       */
+/*   Updated: 2021/08/24 14:30:08 by mjammie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ Form* Intern::makeForm(std::string request, std::string target)
 		"robotomy request",
 		"shrubbery creation"
 	};
-	Form* array[3] = 
+	Form* (Intern::*array[3])(std::string target) = 
 	{
-		array[0] = new PresidentialPardonForm(target),
-		array[1] = new RobotomyRequestForm(target),
-		array[2] = new ShrubberyCreationForm(target)
+		array[0] = &Intern::createPresidentialPardonForm,
+		array[1] = &Intern::createShrubberyCreationForm,
+		array[2] = &Intern::createRobotomyRequestForm
 	};
 	int i;
 
 	for (i = 0; i < 3; i++)
 	{
 		if (request.compare(requestArray[i]) == 0)
-			return array[i];
+			return (this->*(array[i]))(target);;
 	}
 	throw Intern::FormDoesNotExist();
 }
@@ -58,4 +58,19 @@ Form* Intern::makeForm(std::string request, std::string target)
 const char* Intern::FormDoesNotExist::what() const throw()
 {
 	return "The form does not exist!";
+}
+
+Form* Intern::createPresidentialPardonForm(std::string target)
+{
+	return new PresidentialPardonForm(target);
+}
+
+Form* Intern::createShrubberyCreationForm(std::string target)
+{
+	return new ShrubberyCreationForm(target);
+}
+
+Form* Intern::createRobotomyRequestForm(std::string target)
+{
+	return new RobotomyRequestForm(target);
 }

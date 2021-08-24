@@ -16,6 +16,9 @@ public:
 	Intern& operator=(const Intern &intern);
 	~Intern(void);
 	Form* makeForm(std::string request, std::string target);
+	Form* createPresidentialPardonForm(std::string target);
+	Form* createShrubberyCreationForm(std::string target);
+	Form* createRobotomyRequestForm(std::string target);
 
 	class FormDoesNotExist : public std::exception
 	{
