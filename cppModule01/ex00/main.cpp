@@ -22,5 +22,4 @@ int main()
 	zombieBoris = zombieBoris->newZombie("Boris");
 	delete zombieBoris;
 	zombieGena->randomChump("Gena");
-	delete zombieGena;
 }
